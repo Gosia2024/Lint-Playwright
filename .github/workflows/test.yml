@@ -1,0 +1,58 @@
+# Name der Pipeline in GitHub Actions
+name: Lint und Playwright Test
+
+# Wann soll GitHub diese Pipeline starten?
+on:
+  # Wenn du Code hochlädst
+  push:
+    branches:
+      - main
+      - development
+
+  # Wenn ein Pull Request erstellt wird
+  pull_request:
+    branches:
+      - main
+      - development
+
+# Hier beginnen die Aufgaben
+jobs:
+  # Name des Jobs
+  test:
+    # GitHub benutzt einen frischen Linux-Computer
+    runs-on: ubuntu-latest
+
+    # Schritte, die nacheinander ausgeführt werden
+    steps:
+      # Schritt 1:
+      # Code aus deinem GitHub-Repository herunterladen
+      - name: Code herunterladen
+        uses: actions/checkout@v4
+
+      # Schritt 2:
+      # Node.js installieren, damit npm funktioniert
+      - name: Node.js installieren
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Schritt 3:
+      # Alle Pakete aus package-lock.json installieren
+      - name: Pakete installieren
+        run: npm ci
+
+      # Schritt 4:
+      # Code mit ESLint prüfen
+      # Das ist der Lint-Schritt
+      - name: Code mit ESLint prüfen
+        run: npm run lint
+
+      # Schritt 5:
+      # Chromium-Browser für Playwright installieren
+      - name: Chromium für Playwright installieren
+        run: npx playwright install --with-deps chromium
+
+      # Schritt 6:
+      # Playwright-Test im Chromium-Browser starten
+      - name: Playwright-Test ausführen
+        run: npm run test:chromium
