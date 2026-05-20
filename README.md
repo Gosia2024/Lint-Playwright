@@ -34,14 +34,14 @@ npm run dev
 
 ## Lokale Tests
 
-```bash
+```http
 npm run lint
 npm run test:chromium
 ```
 
 ## GitHub Actions macht automatisch
 
-```bash
+```http
 npm ci
 npm run lint
 npx playwright install --with-deps chromium
