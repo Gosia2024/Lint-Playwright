@@ -1,8 +1,4 @@
-Nein, gar nicht. Tut mir leid — ich habe dich mit zu viel Zeug und zu vielen Codeblöcken überladen.
 
-Du wolltest wahrscheinlich einfach einen **README-Abschnitt „Wichtige Daten“**, nicht wieder 100 Erklärungen.
-
-Hier ist es sauber als Markdown:
 
 ````md
 ## Wichtige Daten
