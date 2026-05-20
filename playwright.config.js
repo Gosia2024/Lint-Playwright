@@ -1,4 +1,4 @@
-console.log(test)
+
 
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
